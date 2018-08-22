@@ -1,0 +1,24 @@
+{
+  "name": "mbtiles-server",
+  "version": "1.0.0",
+  "description": "MBTiles发布服务",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bingqixuan/MBTiles-Server.git"
+  },
+  "author": "bingqixuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bingqixuan/MBTiles-Server/issues"
+  },
+  "homepage": "https://github.com/bingqixuan/MBTiles-Server#readme",
+  "devDependencies": {
+    "express": "^4.16.3",
+    "mbtiles": "^0.9.0",
+    "tilelive": "^5.12.3"
+  }
+}
