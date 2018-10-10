@@ -4,6 +4,11 @@ MBTiles发布服务
 ## 数据
 将数据存放到data文件夹下，也可以放入文件夹。
 
+## 安装依赖
+```
+npm install
+```
+
 ## 启动
 ```
 npm start
