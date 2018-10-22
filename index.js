@@ -8,7 +8,7 @@ require('mbtiles').registerProtocols(tilelive);
 var fs = require('fs');
 var path = require('path');
 
-var dataDir = 'data';
+var dataDir = './data';
 
 const MBSources = {};
 
@@ -31,8 +31,7 @@ function fileDisplay(filePath){
         } else {
             //遍历读取到的文件列表
             files.forEach(function (filename) {
-                //获取当前文件的绝对路径
-                var filedir = path.join(filePath, filename);
+                var filedir = filePath + '/' + filename;
                 //根据文件路径获取文件信息，返回一个fs.Stats对象
                 fs.stat(filedir, function (eror, stats) {
                     if (eror) {
@@ -61,7 +60,8 @@ function addSource(path) {
         if (err) {
             throw err;
         }
-        let name = path.split('.')[0].split('\\')[1];
+        let filenameArgs = source.filename.split('/');
+        let name = filenameArgs[filenameArgs.length-1].split('.')[0];
         MBSources[name] = source;
     });
 }
@@ -77,9 +77,9 @@ app.get(/^\/tiles\/(\S+)\/(\d+)\/(\d+)\/(\d+).pbf$/, function(req, res) {
         return;
     }
     let source = MBSources[name];
-    var z = req.params[1];
-    var x = req.params[2];
-    var y = req.params[3];
+    var z = parseInt(req.params[1]);
+    var x = parseInt(req.params[2]);
+    var y = parseInt(req.params[3]);
     console.log('get tile %d, %d, %d', z, x, y);
 
     source.getTile(z, x, y, function (err, tile, headers) {
